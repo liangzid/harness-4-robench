@@ -1,0 +1,22 @@
+task: robench-2024b-test 
+dataset_path: liangzid/robench_2024b-test
+dataset_name: null
+output_type: multiple_choice
+training_split: null 
+validation_split: null
+test_split: train
+doc_to_text: "{{support.lstrip()}}\nQuestion: Which one is the next sequence for the following given context:\n```\n{{question}}```\nAnswer:"
+# doc_to_text: "## Instruction:\n Given a context, and four choice marked as A, B, C, and D, your need to select the correct text which is the next sequence of the context provided. You shouldn't provide any other information (like explanations of your choice) or re-say the choice in your Answer. Just four letters, A, B, C, or D.\n## Context:\n{{context}}\n## Choice:\n**A** {}Answer:"
+doc_to_target: 3
+doc_to_choice: "{{[distractor1, distractor2, distractor3, correct_answer]}}"
+should_decontaminate: false
+# doc_to_decontamination_query: "{{support}} {{question}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.1
